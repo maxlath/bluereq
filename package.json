@@ -1,8 +1,12 @@
 {
-  "name": "qreq",
+  "name": "breq",
   "version": "0.2.0",
-  "description": "A q-style promise wrapper for HTTP requests",
-  "main": "dist/qreq.js",
+  "description": "A bluebird-style promise wrapper for HTTP requests",
+  "main": "dist/breq.js",
+  "contributors": [
+    "jpstevens",
+    "maxlath"
+  ],
   "dependencies": {
     "bluebird": "^2.3.10",
     "request": "~2.34.0"
@@ -24,17 +28,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jpstevens/qreq.git"
+    "url": "https://github.com/maxlath/breq.git"
   },
   "keywords": [
-    "q",
+    "bluebird",
     "request",
     "promise"
   ],
   "author": "Jack Stevens",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jpstevens/qreq/issues"
+    "url": "https://github.com/maxlath/breq/issues"
   },
-  "homepage": "https://github.com/jpstevens/qreq"
+  "homepage": "https://github.com/maxlath/breq"
 }

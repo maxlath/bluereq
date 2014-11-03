@@ -1,11 +1,11 @@
 expect = require("chai").expect
-qreq = require "../../src/qreq"
+breq = require "../../src/breq"
 # test server config
 port = 9090
 host = "http://localhost:#{port}"
 server = require "../fixtures/server"
 
-describe "qreq", ->
+describe "breq", ->
 
   describe "get request", ->
 
@@ -21,7 +21,7 @@ describe "qreq", ->
 
         it "triggers .then(res) function", (done) ->
 
-          qreq.get(validConfig.url).then (res) ->
+          breq.get(validConfig.url).then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
@@ -30,7 +30,7 @@ describe "qreq", ->
 
         it "triggers .then(res) function", (done) ->
 
-          qreq.get(validConfig).then (res) ->
+          breq.get(validConfig).then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
@@ -38,7 +38,7 @@ describe "qreq", ->
       describe "#get(url, callback)", ->
 
         it "triggers callback function with signature (null, res)", (done) ->
-          qreq.get validConfig.url, (err, res) ->
+          breq.get validConfig.url, (err, res) ->
             expect(err).to.not.exist
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
@@ -47,7 +47,7 @@ describe "qreq", ->
       describe "#get(config, callback)", ->
 
         it "triggers callback function with signature (null, res)", (done) ->
-          qreq.get validConfig, (err, res) ->        
+          breq.get validConfig, (err, res) ->
             expect(err).to.not.exist
             expect(res.statusCode).to.deep.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
@@ -62,7 +62,7 @@ describe "qreq", ->
 
         it "triggers .fail(err) function", (done) ->
 
-          qreq.get(invalidConfig.url).fail (err) ->
+          breq.get(invalidConfig.url).fail (err) ->
             expect(err).to.exist
             done()
 
@@ -70,14 +70,14 @@ describe "qreq", ->
 
         it "triggers .fail(res) function", (done) ->
 
-          qreq.get(invalidConfig).fail (err) ->
+          breq.get(invalidConfig).fail (err) ->
             expect(err).to.exist
             done()
 
       describe "#get(url, callback)", ->
 
         it "triggers callback function with signature (err, null)", (done) ->
-          qreq.get invalidConfig.url, (err, res) ->
+          breq.get invalidConfig.url, (err, res) ->
             expect(err).to.exist
             expect(res).to.not.exist
             done()
@@ -85,7 +85,7 @@ describe "qreq", ->
       describe "#get(config, callback)", ->
 
         it "triggers callback function with signature (err, null)", (done) ->
-          qreq.get invalidConfig, (err, res) ->        
+          breq.get invalidConfig, (err, res) ->
             expect(err).to.exist
             expect(res).to.not.exist
             done()

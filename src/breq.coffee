@@ -1,10 +1,9 @@
 request = require "request"
-Q = require "q"
 
 RequestAdapter = require "./request-adapter"
 ArgParser = require "./arg-parser"
 
-class Qreq
+class Breq
 
   request = (method, args) ->
     opts = ArgParser.parse(method, args)
@@ -18,4 +17,4 @@ class Qreq
 
   @put: (args...) -> request "put", args
 
-module.exports = Qreq
+module.exports = Breq

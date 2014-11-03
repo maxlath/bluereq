@@ -1,11 +1,15 @@
 request = require "request"
-Q = require "q"
+Promise = require "bluebird"
+
+# adding a fail alias to caught to ease
+# the transition from Q to Bluebird
+Promise::fail = Promise::caught
 
 class RequestAdapter
 
   makeRequest: (config, callback) ->
     # init defer object
-    deferred = Q.defer()
+    deferred = Promise.defer()
     # make request
     request config, (err, res) ->
       if err then deferred.reject(err)

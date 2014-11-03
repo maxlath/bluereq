@@ -1,92 +1,91 @@
 expect = require("chai").expect
-qreq = require "../../src/qreq"
+breq = require "../../src/breq"
 # test server config
 port = 9090
 host = "http://localhost:#{port}"
 server = require "../fixtures/server"
 
-describe "qreq", ->
+describe "breq", ->
 
-  describe "post request", ->
+  describe "delete request", ->
 
     describe "without errors", ->
 
-      validConfig = { url: "#{host}/json", json: { exampleParam: "exampleValue" } }
-      expectedRes = { statusCode: 200, body: { message: "POST complete.", req: validConfig.json }}
+      expectedRes = { statusCode: 200, body: { message: "DELETE complete." }}
+      validConfig = { url: "#{host}/json", json: true }
 
       before -> server.start(port)
       after -> server.stop()
 
-      describe "#post(url)", ->
+      describe "#delete(url)", ->
 
         it "triggers .then(res) function", (done) ->
 
-          qreq.post(validConfig.url).then (res) ->
-            expect(res.statusCode).to.equal expectedRes.statusCode
-            expect(res.body.message).to.equal expectedRes.body.message
-            expect(res.body.req).to.deep.equal {}
-            done()
-
-      describe "#post(config)", ->
-
-        it "triggers .then(res) function", (done) ->
-
-          qreq.post(validConfig).then (res) ->
+          breq.delete(validConfig.url).then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
 
-      describe "#post(url, callback)", ->
+      describe "#delete(config)", ->
 
-        it "triggers callback function with signature (null, res)", (done) ->
-          qreq.post validConfig.url, (err, res) ->
-            expect(err).to.not.exist
+        it "triggers .then(res) function", (done) ->
+
+          breq.delete(validConfig).then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
-            expect(res.body.message).to.equal expectedRes.body.message
-            expect(res.body.req).to.deep.equal {}
+            expect(res.body).to.deep.equal expectedRes.body
             done()
 
-      describe "#post(config, callback)", ->
+      describe "#delete(url, callback)", ->
 
         it "triggers callback function with signature (null, res)", (done) ->
-          qreq.post validConfig, (err, res) ->        
+          breq.delete validConfig.url, (err, res) ->
+            expect(err).to.not.exist
+            expect(res.statusCode).to.equal expectedRes.statusCode
+            expect(res.body).to.deep.equal expectedRes.body
+            done()
+
+      describe "#delete(config, callback)", ->
+
+        it "triggers callback function with signature (null, res)", (done) ->
+          breq.delete validConfig, (err, res) ->
             expect(err).to.not.exist
             expect(res.statusCode).to.deep.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
 
+
     describe "with errors", ->
 
       invalidConfig = { url: "" }
 
-      describe "#post(url)", ->
+      describe "#delete(url)", ->
 
         it "triggers .fail(err) function", (done) ->
 
-          qreq.post(invalidConfig.url).fail (err) ->
+          breq.delete(invalidConfig.url).fail (err) ->
             expect(err).to.exist
             done()
 
-      describe "#post(config)", ->
+      describe "#delete(config)", ->
 
         it "triggers .fail(res) function", (done) ->
 
-          qreq.post(invalidConfig).fail (err) ->
+          breq.delete(invalidConfig).fail (err) ->
             expect(err).to.exist
             done()
 
-      describe "#post(url, callback)", ->
+      describe "#delete(url, callback)", ->
 
         it "triggers callback function with signature (err, null)", (done) ->
-          qreq.post invalidConfig.url, (err, res) ->
+          breq.delete invalidConfig.url, (err, res) ->
             expect(err).to.exist
             expect(res).to.not.exist
             done()
 
-      describe "#post(config, callback)", ->
+      describe "#delete(config, callback)", ->
 
         it "triggers callback function with signature (err, null)", (done) ->
-          qreq.post invalidConfig, (err, res) ->        
+          breq.delete invalidConfig, (err, res) ->
             expect(err).to.exist
             expect(res).to.not.exist
             done()

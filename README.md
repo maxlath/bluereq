@@ -1,3 +1,8 @@
+# breq
+Porting the small and handy qreq from Q-based promises to [Bluebird](https://github.com/petkaantonov/bluebird)-based promises
+
+===========
+
 # qreq
 [![Build Status](https://secure.travis-ci.org/jpstevens/qreq.png?branch=master)](https://travis-ci.org/jpstevens/qreq) ![Downloads/month](http://img.shields.io/npm/dm/qreq.svg)
 

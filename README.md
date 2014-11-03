@@ -1,58 +1,8 @@
 # breq
-Porting the small and handy qreq from Q-based promises to [Bluebird](https://github.com/petkaantonov/bluebird)-based promises
+Porting the small and handy [qreq](https://github.com/petkaantonov/bluebird) from Q-based promises to [Bluebird](https://github.com/petkaantonov/bluebird)-based promises
 
-===========
+==========
 
-# qreq
-[![Build Status](https://secure.travis-ci.org/jpstevens/qreq.png?branch=master)](https://travis-ci.org/jpstevens/qreq) ![Downloads/month](http://img.shields.io/npm/dm/qreq.svg)
-
-A q-style promise wrapper for HTTP requests
-
-## Installation:
-
-To install, go to your console/terminal and run:
-
-```bash
-npm install qreq
-```
-
-## Usage:
-
-In your project, require the package:
-
-```javascript
-var qreq = require("qreq");
-```
-
-To make a GET request, using the promise syntax:
-
-```javascript
-qreq
-  .get("http://google.com")
-  .then(function(res){
-    console.log(res.body);
-    //...
-  })
-  .fail(function(err){
-    console.log(err);
-    //...
-  });
-```
-
-To make a GET request, using the callback syntax:
-
-```javascript
-qreq.get("http://google.com", function(err, res){
-  if(err){
-    console.log(err);
-    //...
-  } else {
-    conslole.log(res.body);
-    //...
-  }
-});
-```
-
-## Change log:
-
-0.2.0 - Adds callback functionality
+## Todo
+check why tests pass but logs multiple times this:
+`Possibly unhandled Error: options.uri is a required argument`

@@ -3,7 +3,7 @@ request = require "request"
 RequestAdapter = require "./request-adapter"
 ArgParser = require "./arg-parser"
 
-class Breq
+class Bluereq
 
   request = (method, args) ->
     opts = ArgParser.parse(method, args)
@@ -17,4 +17,4 @@ class Breq
 
   @put: (args...) -> request "put", args
 
-module.exports = Breq
+module.exports = Bluereq

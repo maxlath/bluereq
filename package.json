@@ -1,8 +1,8 @@
 {
-  "name": "breq",
-  "version": "0.2.0",
-  "description": "A bluebird-style promise wrapper for HTTP requests",
-  "main": "dist/breq.js",
+  "name": "bluereq",
+  "version": "0.2.1",
+  "description": "A bluebird promise wrapper for HTTP requests",
+  "main": "dist/bluereq.js",
   "contributors": [
     "jpstevens",
     "maxlath"
@@ -28,17 +28,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/maxlath/breq.git"
+    "url": "https://github.com/maxlath/bluereq.git"
   },
   "keywords": [
     "bluebird",
+    "req",
     "request",
-    "promise"
+    "promises"
   ],
   "author": "Jack Stevens",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/maxlath/breq/issues"
+    "url": "https://github.com/maxlath/bluereq/issues"
   },
-  "homepage": "https://github.com/maxlath/breq"
+  "homepage": "https://github.com/maxlath/bluereq",
+  "directories": {
+    "test": "tests"
+  }
 }

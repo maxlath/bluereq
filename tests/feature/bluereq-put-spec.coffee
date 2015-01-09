@@ -1,55 +1,55 @@
 expect = require("chai").expect
-breq = require "../../src/breq"
+bluereq = require "../../src/bluereq"
 # test server config
 port = 9090
 host = "http://localhost:#{port}"
 server = require "../fixtures/server"
 
-describe "breq", ->
+describe "bluereq", ->
 
-  describe "post request", ->
+  describe "put request", ->
 
     describe "without errors", ->
 
       validConfig = { url: "#{host}/json", json: { exampleParam: "exampleValue" } }
-      expectedRes = { statusCode: 200, body: { message: "POST complete.", req: validConfig.json }}
+      expectedRes = { statusCode: 200, body: { message: "PUT complete.", req: validConfig.json }}
 
       before -> server.start(port)
       after -> server.stop()
 
-      describe "#post(url)", ->
+      describe "#put(url)", ->
 
         it "triggers .then(res) function", (done) ->
 
-          breq.post(validConfig.url).then (res) ->
+          bluereq.put(validConfig.url).then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body.message).to.equal expectedRes.body.message
             expect(res.body.req).to.deep.equal {}
             done()
 
-      describe "#post(config)", ->
+      describe "#put(config)", ->
 
         it "triggers .then(res) function", (done) ->
 
-          breq.post(validConfig).then (res) ->
+          bluereq.put(validConfig).then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
 
-      describe "#post(url, callback)", ->
+      describe "#put(url, callback)", ->
 
         it "triggers callback function with signature (null, res)", (done) ->
-          breq.post validConfig.url, (err, res) ->
+          bluereq.put validConfig.url, (err, res) ->
             expect(err).to.not.exist
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body.message).to.equal expectedRes.body.message
             expect(res.body.req).to.deep.equal {}
             done()
 
-      describe "#post(config, callback)", ->
+      describe "#put(config, callback)", ->
 
         it "triggers callback function with signature (null, res)", (done) ->
-          breq.post validConfig, (err, res) ->
+          bluereq.put validConfig, (err, res) ->
             expect(err).to.not.exist
             expect(res.statusCode).to.deep.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
@@ -59,34 +59,34 @@ describe "breq", ->
 
       invalidConfig = { url: "" }
 
-      describe "#post(url)", ->
+      describe "#put(url)", ->
 
         it "triggers .fail(err) function", (done) ->
 
-          breq.post(invalidConfig.url).fail (err) ->
+          bluereq.put(invalidConfig.url).fail (err) ->
             expect(err).to.exist
             done()
 
-      describe "#post(config)", ->
+      describe "#put(config)", ->
 
         it "triggers .fail(res) function", (done) ->
 
-          breq.post(invalidConfig).fail (err) ->
+          bluereq.put(invalidConfig).fail (err) ->
             expect(err).to.exist
             done()
 
-      describe "#post(url, callback)", ->
+      describe "#put(url, callback)", ->
 
         it "triggers callback function with signature (err, null)", (done) ->
-          breq.post invalidConfig.url, (err, res) ->
+          bluereq.put invalidConfig.url, (err, res) ->
             expect(err).to.exist
             expect(res).to.not.exist
             done()
 
-      describe "#post(config, callback)", ->
+      describe "#put(config, callback)", ->
 
         it "triggers callback function with signature (err, null)", (done) ->
-          breq.post invalidConfig, (err, res) ->
+          bluereq.put invalidConfig, (err, res) ->
             expect(err).to.exist
             expect(res).to.not.exist
             done()

@@ -1,91 +1,92 @@
 expect = require("chai").expect
-breq = require "../../src/breq"
+bluereq = require "../../src/bluereq"
 # test server config
 port = 9090
 host = "http://localhost:#{port}"
 server = require "../fixtures/server"
 
-describe "breq", ->
+describe "bluereq", ->
 
-  describe "get request", ->
+  describe "post request", ->
 
     describe "without errors", ->
 
-      expectedRes = { statusCode: 200, body: { message: "GET complete." }}
-      validConfig = { url: "#{host}/json", json: true }
+      validConfig = { url: "#{host}/json", json: { exampleParam: "exampleValue" } }
+      expectedRes = { statusCode: 200, body: { message: "POST complete.", req: validConfig.json }}
 
       before -> server.start(port)
       after -> server.stop()
 
-      describe "#get(url)", ->
+      describe "#post(url)", ->
 
         it "triggers .then(res) function", (done) ->
 
-          breq.get(validConfig.url).then (res) ->
+          bluereq.post(validConfig.url).then (res) ->
+            expect(res.statusCode).to.equal expectedRes.statusCode
+            expect(res.body.message).to.equal expectedRes.body.message
+            expect(res.body.req).to.deep.equal {}
+            done()
+
+      describe "#post(config)", ->
+
+        it "triggers .then(res) function", (done) ->
+
+          bluereq.post(validConfig).then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
 
-      describe "#get(config)", ->
-
-        it "triggers .then(res) function", (done) ->
-
-          breq.get(validConfig).then (res) ->
-            expect(res.statusCode).to.equal expectedRes.statusCode
-            expect(res.body).to.deep.equal expectedRes.body
-            done()
-
-      describe "#get(url, callback)", ->
+      describe "#post(url, callback)", ->
 
         it "triggers callback function with signature (null, res)", (done) ->
-          breq.get validConfig.url, (err, res) ->
+          bluereq.post validConfig.url, (err, res) ->
             expect(err).to.not.exist
             expect(res.statusCode).to.equal expectedRes.statusCode
-            expect(res.body).to.deep.equal expectedRes.body
+            expect(res.body.message).to.equal expectedRes.body.message
+            expect(res.body.req).to.deep.equal {}
             done()
 
-      describe "#get(config, callback)", ->
+      describe "#post(config, callback)", ->
 
         it "triggers callback function with signature (null, res)", (done) ->
-          breq.get validConfig, (err, res) ->
+          bluereq.post validConfig, (err, res) ->
             expect(err).to.not.exist
             expect(res.statusCode).to.deep.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
 
-
     describe "with errors", ->
 
       invalidConfig = { url: "" }
 
-      describe "#get(url)", ->
+      describe "#post(url)", ->
 
         it "triggers .fail(err) function", (done) ->
 
-          breq.get(invalidConfig.url).fail (err) ->
+          bluereq.post(invalidConfig.url).fail (err) ->
             expect(err).to.exist
             done()
 
-      describe "#get(config)", ->
+      describe "#post(config)", ->
 
         it "triggers .fail(res) function", (done) ->
 
-          breq.get(invalidConfig).fail (err) ->
+          bluereq.post(invalidConfig).fail (err) ->
             expect(err).to.exist
             done()
 
-      describe "#get(url, callback)", ->
+      describe "#post(url, callback)", ->
 
         it "triggers callback function with signature (err, null)", (done) ->
-          breq.get invalidConfig.url, (err, res) ->
+          bluereq.post invalidConfig.url, (err, res) ->
             expect(err).to.exist
             expect(res).to.not.exist
             done()
 
-      describe "#get(config, callback)", ->
+      describe "#post(config, callback)", ->
 
         it "triggers callback function with signature (err, null)", (done) ->
-          breq.get invalidConfig, (err, res) ->
+          bluereq.post invalidConfig, (err, res) ->
             expect(err).to.exist
             expect(res).to.not.exist
             done()

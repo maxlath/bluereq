@@ -1,53 +1,53 @@
 expect = require("chai").expect
-breq = require "../../src/breq"
+bluereq = require "../../src/bluereq"
 # test server config
 port = 9090
 host = "http://localhost:#{port}"
 server = require "../fixtures/server"
 
-describe "breq", ->
+describe "bluereq", ->
 
-  describe "delete request", ->
+  describe "get request", ->
 
     describe "without errors", ->
 
-      expectedRes = { statusCode: 200, body: { message: "DELETE complete." }}
+      expectedRes = { statusCode: 200, body: { message: "GET complete." }}
       validConfig = { url: "#{host}/json", json: true }
 
       before -> server.start(port)
       after -> server.stop()
 
-      describe "#delete(url)", ->
+      describe "#get(url)", ->
 
         it "triggers .then(res) function", (done) ->
 
-          breq.delete(validConfig.url).then (res) ->
+          bluereq.get(validConfig.url).then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
 
-      describe "#delete(config)", ->
+      describe "#get(config)", ->
 
         it "triggers .then(res) function", (done) ->
 
-          breq.delete(validConfig).then (res) ->
+          bluereq.get(validConfig).then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
 
-      describe "#delete(url, callback)", ->
+      describe "#get(url, callback)", ->
 
         it "triggers callback function with signature (null, res)", (done) ->
-          breq.delete validConfig.url, (err, res) ->
+          bluereq.get validConfig.url, (err, res) ->
             expect(err).to.not.exist
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
 
-      describe "#delete(config, callback)", ->
+      describe "#get(config, callback)", ->
 
         it "triggers callback function with signature (null, res)", (done) ->
-          breq.delete validConfig, (err, res) ->
+          bluereq.get validConfig, (err, res) ->
             expect(err).to.not.exist
             expect(res.statusCode).to.deep.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
@@ -58,34 +58,34 @@ describe "breq", ->
 
       invalidConfig = { url: "" }
 
-      describe "#delete(url)", ->
+      describe "#get(url)", ->
 
         it "triggers .fail(err) function", (done) ->
 
-          breq.delete(invalidConfig.url).fail (err) ->
+          bluereq.get(invalidConfig.url).fail (err) ->
             expect(err).to.exist
             done()
 
-      describe "#delete(config)", ->
+      describe "#get(config)", ->
 
         it "triggers .fail(res) function", (done) ->
 
-          breq.delete(invalidConfig).fail (err) ->
+          bluereq.get(invalidConfig).fail (err) ->
             expect(err).to.exist
             done()
 
-      describe "#delete(url, callback)", ->
+      describe "#get(url, callback)", ->
 
         it "triggers callback function with signature (err, null)", (done) ->
-          breq.delete invalidConfig.url, (err, res) ->
+          bluereq.get invalidConfig.url, (err, res) ->
             expect(err).to.exist
             expect(res).to.not.exist
             done()
 
-      describe "#delete(config, callback)", ->
+      describe "#get(config, callback)", ->
 
         it "triggers callback function with signature (err, null)", (done) ->
-          breq.delete invalidConfig, (err, res) ->
+          bluereq.get invalidConfig, (err, res) ->
             expect(err).to.exist
             expect(res).to.not.exist
             done()

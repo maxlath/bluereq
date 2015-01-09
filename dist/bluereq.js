@@ -1,5 +1,5 @@
 (function() {
-  var ArgParser, Breq, RequestAdapter, request,
+  var ArgParser, Bluereq, RequestAdapter, request,
     __slice = [].slice;
 
   request = require("request");
@@ -8,8 +8,8 @@
 
   ArgParser = require("./arg-parser");
 
-  Breq = (function() {
-    function Breq() {}
+  Bluereq = (function() {
+    function Bluereq() {}
 
     request = function(method, args) {
       var opts;
@@ -17,34 +17,34 @@
       return RequestAdapter.makeRequest(opts.config, opts.callback);
     };
 
-    Breq.get = function() {
+    Bluereq.get = function() {
       var args;
       args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
       return request("get", args);
     };
 
-    Breq.post = function() {
+    Bluereq.post = function() {
       var args;
       args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
       return request("post", args);
     };
 
-    Breq["delete"] = function() {
+    Bluereq["delete"] = function() {
       var args;
       args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
       return request("delete", args);
     };
 
-    Breq.put = function() {
+    Bluereq.put = function() {
       var args;
       args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
       return request("put", args);
     };
 
-    return Breq;
+    return Bluereq;
 
   })();
 
-  module.exports = Breq;
+  module.exports = Bluereq;
 
 }).call(this);

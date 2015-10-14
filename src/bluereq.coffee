@@ -17,4 +17,6 @@ class Bluereq
 
   @put: (args...) -> request "put", args
 
+  @head: (args...) -> request "head", args
+
 module.exports = Bluereq

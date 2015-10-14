@@ -6,9 +6,9 @@ class ArgParser
     opts = {}
     method = method.toUpperCase()
     switch method
-      when "GET", "DELETE" then opts = @getOpts(args, false)
+      when "GET", "DELETE", "HEAD" then opts = @getOpts(args, false)
       when "POST",  "PUT" then opts = @getOpts(args, true)
-      else throw new Error "Method must be GET, DELETE, POST or PUT"
+      else throw new Error "Method must be GET, DELETE, POST, PUT or HEAD"
     opts.config.method = method
     opts
 
@@ -45,4 +45,3 @@ class ArgParser
     opts
 
 module.exports = new ArgParser()
-  

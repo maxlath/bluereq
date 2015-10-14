@@ -8,14 +8,10 @@ Promise::fail = Promise::caught
 class RequestAdapter
 
   makeRequest: (config, callback) ->
-    # init defer object
-    deferred = Promise.defer()
-    # make request
-    request config, (err, res) ->
-      if err then deferred.reject(err)
-      else deferred.resolve(res)
-      callback err, res if callback
-    # return promise
-    deferred.promise
+    new Promise (resolve, reject)->
+      request config, (err, res) ->
+        if err? then reject err
+        else resolve res
+        callback err, res if callback
 
 module.exports = new RequestAdapter()

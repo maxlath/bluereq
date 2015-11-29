@@ -24,6 +24,7 @@
   },
   "scripts": {
     "test": "grunt test",
+    "build": "grunt build",
     "prepublish": "grunt test && grunt build"
   },
   "repository": {

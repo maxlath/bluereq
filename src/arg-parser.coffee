@@ -1,7 +1,6 @@
 signature = require "./signature-checker"
 
-class ArgParser
-
+module.exports =
   parse: (method, args) ->
     opts = {}
     method = method.toUpperCase()
@@ -43,5 +42,3 @@ class ArgParser
       throw new Error "Invalid params: #{args.join(', ')}"
     # return parsed options
     opts
-
-module.exports = new ArgParser()

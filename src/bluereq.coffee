@@ -1,20 +1,13 @@
 RequestAdapter = require "./request-adapter"
 ArgParser = require "./arg-parser"
 
-class Bluereq
+request = (method, args...) ->
+  opts = ArgParser.parse(method, args)
+  RequestAdapter.makeRequest opts.config, opts.callback
 
-  request = (method, args) ->
-    opts = ArgParser.parse(method, args)
-    RequestAdapter.makeRequest opts.config, opts.callback
 
-  @get: (args...) -> request "get", args
-
-  @post: (args...) -> request "post", args
-
-  @delete: (args...) -> request "delete", args
-
-  @put: (args...) -> request "put", args
-
-  @head: (args...) -> request "head", args
-
-module.exports = Bluereq
+module.exports =
+  get: request.bind null, "get"
+  post: request.bind null, "post"
+  delete: request.bind null, "delete"
+  put: request.bind null, "put"

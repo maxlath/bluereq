@@ -5,13 +5,10 @@ Promise = require "bluebird"
 # the transition from Q to Bluebird
 Promise::fail = Promise::caught
 
-class RequestAdapter
-
+module.exports =
   makeRequest: (config, callback) ->
     new Promise (resolve, reject)->
       request config, (err, res) ->
         if err? then reject err
         else resolve res
         callback err, res if callback
-
-module.exports = new RequestAdapter()

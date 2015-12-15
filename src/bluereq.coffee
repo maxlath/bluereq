@@ -1,5 +1,3 @@
-request = require "request"
-
 RequestAdapter = require "./request-adapter"
 ArgParser = require "./arg-parser"
 

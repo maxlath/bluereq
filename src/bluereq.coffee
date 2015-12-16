@@ -7,7 +7,8 @@ request = (method, args...) ->
 
 
 module.exports =
-  get: request.bind null, "get"
-  post: request.bind null, "post"
-  delete: request.bind null, "delete"
-  put: request.bind null, "put"
+  get: request.bind null, 'get'
+  post: request.bind null, 'post'
+  delete: request.bind null, 'delete'
+  put: request.bind null, 'put'
+  head: request.bind null, 'head'

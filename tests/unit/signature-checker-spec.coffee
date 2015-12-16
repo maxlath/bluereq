@@ -2,7 +2,7 @@ expect = require('chai').expect
 sig = require '../../src/signature-checker'
 nullFn = -> null
 
-describe 'SignatureChecker', ->
+describe 'signatureChecker', ->
 
   describe '#matches', ->
 

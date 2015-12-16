@@ -1,25 +1,25 @@
-expect = require("chai").expect
-bluereq = require "../../src/bluereq"
+expect = require('chai').expect
+bluereq = require '../../src/bluereq'
 # test server config
 port = 9090
 host = "http://localhost:#{port}"
-server = require "../fixtures/server"
+server = require '../fixtures/server'
 
-describe "bluereq", ->
+describe 'bluereq', ->
 
-  describe "put request", ->
+  describe 'put request', ->
 
-    describe "without errors", ->
+    describe 'without errors', ->
 
-      validConfig = { url: "#{host}/json", json: { exampleParam: "exampleValue" } }
-      expectedRes = { statusCode: 200, body: { message: "PUT complete.", req: validConfig.json }}
+      validConfig = { url: "#{host}/json", json: { exampleParam: 'exampleValue' } }
+      expectedRes = { statusCode: 200, body: { message: 'PUT complete.', req: validConfig.json }}
 
       before -> server.start(port)
       after -> server.stop()
 
-      describe "#put(url)", ->
+      describe '#put(url)', ->
 
-        it "triggers .then(res) function", (done) ->
+        it 'triggers .then(res) function', (done) ->
 
           bluereq.put validConfig.url
           .then (res) ->
@@ -28,9 +28,9 @@ describe "bluereq", ->
             expect(res.body.req).to.deep.equal {}
             done()
 
-      describe "#put(config)", ->
+      describe '#put(config)', ->
 
-        it "triggers .then(res) function", (done) ->
+        it 'triggers .then(res) function', (done) ->
 
           bluereq.put validConfig
           .then (res) ->
@@ -38,22 +38,22 @@ describe "bluereq", ->
             expect(res.body).to.deep.equal expectedRes.body
             done()
 
-    describe "with errors", ->
+    describe 'with errors', ->
 
-      invalidConfig = { url: "" }
+      invalidConfig = { url: '' }
 
-      describe "#put(url)", ->
+      describe '#put(url)', ->
 
-        it "triggers .catch(err) function", (done) ->
+        it 'triggers .catch(err) function', (done) ->
 
           bluereq.put invalidConfig.url
           .catch (err) ->
             expect(err).to.exist
             done()
 
-      describe "#put(config)", ->
+      describe '#put(config)', ->
 
-        it "triggers .catch(res) function", (done) ->
+        it 'triggers .catch(res) function', (done) ->
 
           bluereq.put invalidConfig
           .catch (err) ->

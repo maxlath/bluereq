@@ -1,25 +1,25 @@
-expect = require("chai").expect
-bluereq = require "../../src/bluereq"
+expect = require('chai').expect
+bluereq = require '../../src/bluereq'
 # test server config
 port = 9090
 host = "http://localhost:#{port}"
-server = require "../fixtures/server"
+server = require '../fixtures/server'
 
-describe "bluereq", ->
+describe 'bluereq', ->
 
-  describe "delete request", ->
+  describe 'delete request', ->
 
-    describe "without errors", ->
+    describe 'without errors', ->
 
-      expectedRes = { statusCode: 200, body: { message: "DELETE complete." }}
+      expectedRes = { statusCode: 200, body: { message: 'DELETE complete.' }}
       validConfig = { url: "#{host}/json", json: true }
 
       before -> server.start(port)
       after -> server.stop()
 
-      describe "#delete(url)", ->
+      describe '#delete(url)', ->
 
-        it "triggers .then(res) function", (done) ->
+        it 'triggers .then(res) function', (done) ->
 
           bluereq.delete validConfig.url
           .then (res) ->
@@ -27,9 +27,9 @@ describe "bluereq", ->
             expect(res.body).to.deep.equal expectedRes.body
             done()
 
-      describe "#delete(config)", ->
+      describe '#delete(config)', ->
 
-        it "triggers .then(res) function", (done) ->
+        it 'triggers .then(res) function', (done) ->
 
           bluereq.delete validConfig
           .then (res) ->
@@ -37,22 +37,22 @@ describe "bluereq", ->
             expect(res.body).to.deep.equal expectedRes.body
             done()
 
-    describe "with errors", ->
+    describe 'with errors', ->
 
-      invalidConfig = { url: "" }
+      invalidConfig = { url: '' }
 
-      describe "#delete(url)", ->
+      describe '#delete(url)', ->
 
-        it "triggers .catch(err) function", (done) ->
+        it 'triggers .catch(err) function', (done) ->
 
           bluereq.delete invalidConfig.url
           .catch (err) ->
             expect(err).to.exist
             done()
 
-      describe "#delete(config)", ->
+      describe '#delete(config)', ->
 
-        it "triggers .catch(res) function", (done) ->
+        it 'triggers .catch(res) function', (done) ->
 
           bluereq.delete invalidConfig
           .catch (err) ->

@@ -2,7 +2,7 @@ expect = require('chai').expect
 argParser = require '../../src/arg-parser'
 nullCb = (err, res) -> null
 
-describe 'ArgParser', ->
+describe 'argParser', ->
 
   describe 'getOpts', ->
 

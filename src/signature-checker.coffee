@@ -1,5 +1,8 @@
 module.exports =
   matches: (args, signature...) ->
-    return false if args.length != signature.length
-    ( return false if typeof args[i] isnt sig ) for sig, i in signature
-    true
+    if args.length isnt signature.length then return false
+
+    for sig, i in signature
+      if typeof args[i] isnt sig then return false
+
+    return true

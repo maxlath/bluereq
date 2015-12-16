@@ -21,7 +21,8 @@ describe "bluereq", ->
 
         it "triggers .then(res) function", (done) ->
 
-          bluereq.delete(validConfig.url).then (res) ->
+          bluereq.delete validConfig.url
+          .then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
@@ -30,29 +31,11 @@ describe "bluereq", ->
 
         it "triggers .then(res) function", (done) ->
 
-          bluereq.delete(validConfig).then (res) ->
+          bluereq.delete validConfig
+          .then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
-
-      describe "#delete(url, callback)", ->
-
-        it "triggers callback function with signature (null, res)", (done) ->
-          bluereq.delete validConfig.url, (err, res) ->
-            expect(err).to.not.exist
-            expect(res.statusCode).to.equal expectedRes.statusCode
-            expect(res.body).to.deep.equal expectedRes.body
-            done()
-
-      describe "#delete(config, callback)", ->
-
-        it "triggers callback function with signature (null, res)", (done) ->
-          bluereq.delete validConfig, (err, res) ->
-            expect(err).to.not.exist
-            expect(res.statusCode).to.deep.equal expectedRes.statusCode
-            expect(res.body).to.deep.equal expectedRes.body
-            done()
-
 
     describe "with errors", ->
 
@@ -60,32 +43,18 @@ describe "bluereq", ->
 
       describe "#delete(url)", ->
 
-        it "triggers .fail(err) function", (done) ->
+        it "triggers .catch(err) function", (done) ->
 
-          bluereq.delete(invalidConfig.url).fail (err) ->
+          bluereq.delete invalidConfig.url
+          .catch (err) ->
             expect(err).to.exist
             done()
 
       describe "#delete(config)", ->
 
-        it "triggers .fail(res) function", (done) ->
+        it "triggers .catch(res) function", (done) ->
 
-          bluereq.delete(invalidConfig).fail (err) ->
+          bluereq.delete invalidConfig
+          .catch (err) ->
             expect(err).to.exist
-            done()
-
-      describe "#delete(url, callback)", ->
-
-        it "triggers callback function with signature (err, null)", (done) ->
-          bluereq.delete invalidConfig.url, (err, res) ->
-            expect(err).to.exist
-            expect(res).to.not.exist
-            done()
-
-      describe "#delete(config, callback)", ->
-
-        it "triggers callback function with signature (err, null)", (done) ->
-          bluereq.delete invalidConfig, (err, res) ->
-            expect(err).to.exist
-            expect(res).to.not.exist
             done()

@@ -1,10 +1,9 @@
-RequestAdapter = require "./request-adapter"
-ArgParser = require "./arg-parser"
+requestAdapter = require './request-adapter'
+argParser = require './arg-parser'
 
 request = (method, args...) ->
-  opts = ArgParser.parse(method, args)
-  RequestAdapter.makeRequest opts.config, opts.callback
-
+  opts = argParser.parse method, args
+  requestAdapter.makeRequest opts.config, opts.callback
 
 module.exports =
   get: request.bind null, 'get'

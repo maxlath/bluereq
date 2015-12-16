@@ -21,7 +21,8 @@ describe "bluereq", ->
 
         it "triggers .then(res) function", (done) ->
 
-          bluereq.post(validConfig.url).then (res) ->
+          bluereq.post validConfig.url
+          .then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body.message).to.equal expectedRes.body.message
             expect(res.body.req).to.deep.equal {}
@@ -31,27 +32,9 @@ describe "bluereq", ->
 
         it "triggers .then(res) function", (done) ->
 
-          bluereq.post(validConfig).then (res) ->
+          bluereq.post validConfig
+          .then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
-            expect(res.body).to.deep.equal expectedRes.body
-            done()
-
-      describe "#post(url, callback)", ->
-
-        it "triggers callback function with signature (null, res)", (done) ->
-          bluereq.post validConfig.url, (err, res) ->
-            expect(err).to.not.exist
-            expect(res.statusCode).to.equal expectedRes.statusCode
-            expect(res.body.message).to.equal expectedRes.body.message
-            expect(res.body.req).to.deep.equal {}
-            done()
-
-      describe "#post(config, callback)", ->
-
-        it "triggers callback function with signature (null, res)", (done) ->
-          bluereq.post validConfig, (err, res) ->
-            expect(err).to.not.exist
-            expect(res.statusCode).to.deep.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
 
@@ -61,32 +44,18 @@ describe "bluereq", ->
 
       describe "#post(url)", ->
 
-        it "triggers .fail(err) function", (done) ->
+        it "triggers .catch(err) function", (done) ->
 
-          bluereq.post(invalidConfig.url).fail (err) ->
+          bluereq.post invalidConfig.url
+          .catch (err) ->
             expect(err).to.exist
             done()
 
       describe "#post(config)", ->
 
-        it "triggers .fail(res) function", (done) ->
+        it "triggers .catch(res) function", (done) ->
 
-          bluereq.post(invalidConfig).fail (err) ->
+          bluereq.post invalidConfig
+          .catch (err) ->
             expect(err).to.exist
-            done()
-
-      describe "#post(url, callback)", ->
-
-        it "triggers callback function with signature (err, null)", (done) ->
-          bluereq.post invalidConfig.url, (err, res) ->
-            expect(err).to.exist
-            expect(res).to.not.exist
-            done()
-
-      describe "#post(config, callback)", ->
-
-        it "triggers callback function with signature (err, null)", (done) ->
-          bluereq.post invalidConfig, (err, res) ->
-            expect(err).to.exist
-            expect(res).to.not.exist
             done()

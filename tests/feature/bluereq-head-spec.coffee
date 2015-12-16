@@ -21,7 +21,8 @@ describe 'bluereq', ->
 
         it 'triggers .then(res) function', (done) ->
 
-          bluereq.head(validConfig.url).then (res) ->
+          bluereq.head validConfig.url
+          .then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.equal expectedRes.body
             done()
@@ -30,7 +31,8 @@ describe 'bluereq', ->
 
         it 'triggers .then(res) function', (done) ->
 
-          bluereq.head(validConfig).then (res) ->
+          bluereq.head validConfig
+          .then (res) ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.equal expectedRes.body
             done()
@@ -41,16 +43,18 @@ describe 'bluereq', ->
 
       describe '#head(url)', ->
 
-        it 'triggers .fail(err) function', (done) ->
+        it 'triggers .catch(err) function', (done) ->
 
-          bluereq.head(invalidConfig.url).fail (err) ->
+          bluereq.head invalidConfig.url
+          .catch (err) ->
             expect(err).to.exist
             done()
 
       describe '#head(config)', ->
 
-        it 'triggers .fail(res) function', (done) ->
+        it 'triggers .catch(res) function', (done) ->
 
-          bluereq.head(invalidConfig).fail (err) ->
+          bluereq.head invalidConfig
+          .catch (err) ->
             expect(err).to.exist
             done()

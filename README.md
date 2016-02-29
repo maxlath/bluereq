@@ -59,3 +59,8 @@ breq.post(config)
 ```
 
 See [request documentation](https://www.npmjs.com/package/request) for more options
+
+
+# Alternatives
+
+I started this lib as a simple fork of qreq, not seeing that [a lot was already happening to wrap request and bluebird together](https://libraries.io/search?q=request+bluebird&platforms=NPM&sort=stars), especially [request-promise](https://github.com/request/request-promise) seems interesting, (while slightly more bloted ;) )

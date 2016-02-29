@@ -20,7 +20,7 @@
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script/register tests/unit/* tests/feature/*",
     "build": "rm -rf build; coffee -o build -c src",
-    "prepublish": "grunt test && grunt build"
+    "prepublish": "npm test && npm run build"
   },
   "repository": {
     "type": "git",

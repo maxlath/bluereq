@@ -16,14 +16,15 @@ var breq = require('bluereq')
 
 ## the simple way
 
-* GET / HEAD / DELETE
+* **GET** / **HEAD** / **DELETE**
+
 ```javascript
 breq.get(url) // or breq.head(url) or breq.delete(url)
 .then(function (res) { // do your magic here } )
 .catch(function (err) { // handle error } )
 ```
 
-* POST / PUT
+* **POST** / **PUT**
 ```javascript
 breq.post(url, data) // or breq.put(url, data)
 .then(function (res) { // do your magic here } )
@@ -35,7 +36,8 @@ Here, data is assumed to be an object to be posted/put as JSON. If it isn't the 
 ## the more configurable way
 Take advantage of [request](https://www.npmjs.com/package/request) configurability to customize your request
 
-* GET / POST / PUT / HEAD / DELETE
+* **GET** / **POST** / **PUT** / **HEAD** / **DELETE**
+
 ```javascript
 breq.get(config) // or breq.post(config) or breq.put(config) or breq.head(config) or breq.delete(config)
 .then(function (res) { // do your magic here } )

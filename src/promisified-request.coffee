@@ -3,10 +3,10 @@ Promise = require 'bluebird'
 pick = require 'lodash.pick'
 # attributes to keep from a response object with statusCode >= 400
 errorAttributes = [
-  'body'
-  'headers'
   'statusCode'
   'statusMessage'
+  'headers'
+  'body'
 ]
 
 module.exports = (config) ->

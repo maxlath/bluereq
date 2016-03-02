@@ -1,5 +1,13 @@
 request = require 'request'
 Promise = require 'bluebird'
+pick = require 'lodash.pick'
+# attributes to keep from a response object with statusCode >= 400
+errorAttributes = [
+  'body'
+  'headers'
+  'statusCode'
+  'statusMessage'
+]
 
 module.exports = (config) ->
   new Promise (resolve, reject)->
@@ -10,5 +18,6 @@ module.exports = (config) ->
         else
           err = new Error res.statusMessage
           # copy all the data from res to err
-          Object.assign(err, res)
+          data = pick res, errorAttributes
+          Object.assign(err, data)
           reject err

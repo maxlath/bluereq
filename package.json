@@ -9,6 +9,7 @@
   ],
   "dependencies": {
     "bluebird": "^3.0.5",
+    "lodash.pick": "^4.1.0",
     "request": "^2.67.0"
   },
   "devDependencies": {
@@ -20,6 +21,7 @@
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script/register tests/unit/* tests/feature/*",
     "build": "rm -rf build; coffee -o build -c src",
+    "build-watch": "rm -rf build; coffee --watch -o build -c src",
     "prepublish": "npm test && npm run build"
   },
   "repository": {

@@ -11,3 +11,4 @@ module.exports =
   delete: customRequest.bind null, 'delete'
   put: customRequest.bind null, 'put'
   head: customRequest.bind null, 'head'
+  patch: customRequest.bind null, 'patch'

@@ -19,5 +19,6 @@ module.exports = (config) ->
           err = new Error res.statusMessage
           # copy all the data from res to err
           data = pick res, errorAttributes
+          data.url = res.request.uri.href
           Object.assign(err, data)
           reject err

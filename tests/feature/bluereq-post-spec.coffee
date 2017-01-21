@@ -46,6 +46,9 @@ describe 'bluereq', ->
 
       invalidConfig = { url: '' }
 
+      before -> server.start(port)
+      after -> server.stop()
+
       describe '#post(url)', ->
 
         it 'triggers .catch(err) function', (done) ->
@@ -53,6 +56,21 @@ describe 'bluereq', ->
           bluereq.post invalidConfig.url
           .catch (err) ->
             expect(err).to.exist
+            done()
+
+          return
+
+
+        it 'returns formatted server errors', (done) ->
+
+          bluereq.post "#{host}/undefined-endpoint"
+          .catch (err) ->
+            expect(err).to.exist
+            expect(err.statusCode).to.equal 404
+            expect(err.statusMessage).to.equal 'Not Found'
+            expect(err.headers).to.exist
+            expect(err.body).to.exist
+            expect(err.url).to.equal "#{host}/undefined-endpoint"
             done()
 
           return

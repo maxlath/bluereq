@@ -1,4 +1,4 @@
-expect = require('chai').expect
+{ expect } = require 'chai'
 bluereq = require '../../src/bluereq'
 # test server config
 port = 9090
@@ -20,3 +20,5 @@ describe 'error object', ->
       expect(err.statusCode).to.equal expectedErr.statusCode
       expect(err.body).to.deep.equal expectedErr.body
       done()
+
+    return

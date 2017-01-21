@@ -1,4 +1,4 @@
-expect = require('chai').expect
+{ expect } = require 'chai'
 bluereq = require '../../src/bluereq'
 # test server config
 port = 9090
@@ -27,6 +27,8 @@ describe 'bluereq', ->
             expect(res.body).to.deep.equal expectedRes.body
             done()
 
+          return
+
       describe '#delete(config)', ->
 
         it 'triggers .then(res) function', (done) ->
@@ -36,6 +38,8 @@ describe 'bluereq', ->
             expect(res.statusCode).to.equal expectedRes.statusCode
             expect(res.body).to.deep.equal expectedRes.body
             done()
+
+          return
 
     describe 'with errors', ->
 
@@ -50,6 +54,8 @@ describe 'bluereq', ->
             expect(err).to.exist
             done()
 
+          return
+
       describe '#delete(config)', ->
 
         it 'triggers .catch(res) function', (done) ->
@@ -58,3 +64,5 @@ describe 'bluereq', ->
           .catch (err) ->
             expect(err).to.exist
             done()
+
+          return

@@ -23,7 +23,7 @@
   "scripts": {
     "test": "mocha tests/unit/* tests/feature/*",
     "lint": "standard",
-    "prepublish": "npm run lint && npm test"
+    "prepublish": "npm test"
   },
   "repository": {
     "type": "git",

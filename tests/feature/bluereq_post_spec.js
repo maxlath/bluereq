@@ -22,7 +22,6 @@ describe('post request', () => {
           expect(res.body.req).to.deep.equal({})
           done()
         })
-        return
       })
     })
 
@@ -34,7 +33,6 @@ describe('post request', () => {
           expect(res.body).to.deep.equal(expectedRes.body)
           done()
         })
-        return
       })
     })
   })
@@ -52,7 +50,6 @@ describe('post request', () => {
           expect(err).to.exist
           done()
         })
-        return
       })
 
       it('returns formatted server errors', done => {
@@ -66,7 +63,6 @@ describe('post request', () => {
           expect(err.url).to.equal(`${host}/undefined-endpoint`)
           done()
         })
-        return
       })
     })
 
@@ -77,7 +73,6 @@ describe('post request', () => {
           expect(err).to.exist
           done()
         })
-        return
       })
     })
   })

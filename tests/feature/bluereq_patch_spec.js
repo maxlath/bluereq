@@ -22,7 +22,6 @@ describe('patch request', () => {
           expect(res.body.req).to.deep.equal({})
           done()
         })
-        return
       })
     })
 
@@ -32,9 +31,8 @@ describe('patch request', () => {
         .then(res => {
           expect(res.statusCode).to.equal(expectedRes.statusCode)
           expect(res.body).to.deep.equal(expectedRes.body)
+          done()
         })
-        done()
-        return
       })
     })
   })
@@ -48,7 +46,6 @@ describe('patch request', () => {
           expect(err).to.exist
           done()
         })
-        return
       })
     })
 
@@ -59,8 +56,6 @@ describe('patch request', () => {
           expect(err).to.exist
           done()
         })
-
-        return
       })
     })
   })

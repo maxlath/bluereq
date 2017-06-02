@@ -21,7 +21,6 @@ describe('delete request', () => {
           expect(res.body).to.deep.equal(expectedRes.body)
           done()
         })
-      return
     })
   })
 
@@ -33,7 +32,6 @@ describe('delete request', () => {
           expect(res.body).to.deep.equal(expectedRes.body)
           done()
         })
-      return
     })
   })
 
@@ -46,7 +44,6 @@ describe('delete request', () => {
           expect(err).to.exist
           done()
         })
-        return
       })
     })
 
@@ -57,7 +54,6 @@ describe('delete request', () => {
           expect(err).to.exist
           done()
         })
-        return
       })
     })
   })

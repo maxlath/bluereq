@@ -18,6 +18,5 @@ describe('error object', () => {
       expect(err.body).to.deep.equal(expectedErr.body)
       done()
     })
-    return
   })
 })

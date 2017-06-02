@@ -21,7 +21,6 @@ describe('get request', () => {
           expect(res.body).to.deep.equal(expectedRes.body)
           done()
         })
-        return
       })
     })
 
@@ -33,7 +32,6 @@ describe('get request', () => {
           expect(res.body).to.deep.equal(expectedRes.body)
           done()
         })
-        return
       })
     })
   })
@@ -47,7 +45,6 @@ describe('get request', () => {
           expect(err).to.exist
           done()
         })
-        return
       })
     })
 
@@ -58,7 +55,6 @@ describe('get request', () => {
           expect(err).to.exist
           done()
         })
-        return
       })
     })
   })

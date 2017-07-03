@@ -25,6 +25,19 @@ describe('post request', () => {
       })
     })
 
+    describe('#post(url, text)', () => {
+      it('triggers .then(res) function', done => {
+        bluereq.post(validConfig.url, "some text")
+        .then(res => {
+          expect(res.statusCode).to.equal(expectedRes.statusCode)
+          expect(res.body).to.be.a.String
+          const body = JSON.parse(res.body)
+          expect(body.message).to.equal(expectedRes.body.message)
+          done()
+        })
+      })
+    })
+
     describe('#post(config)', () => {
       it('triggers .then(res) function', done => {
         bluereq.post(validConfig)

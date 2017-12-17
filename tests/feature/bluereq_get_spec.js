@@ -42,7 +42,7 @@ describe('get request', () => {
       it('triggers .catch(err) function', done => {
         bluereq.get(invalidConfig.url)
         .catch(err => {
-          expect(err).to.exist
+          expect(err).to.exist()
           done()
         })
       })
@@ -52,7 +52,7 @@ describe('get request', () => {
       it('triggers .catch(res) function', done => {
         bluereq.get(invalidConfig)
         .catch(err => {
-          expect(err).to.exist
+          expect(err).to.exist()
           done()
         })
       })

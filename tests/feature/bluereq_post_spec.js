@@ -27,10 +27,10 @@ describe('post request', () => {
 
     describe('#post(url, text)', () => {
       it('triggers .then(res) function', done => {
-        bluereq.post(validConfig.url, "some text")
+        bluereq.post(validConfig.url, 'some text')
         .then(res => {
           expect(res.statusCode).to.equal(expectedRes.statusCode)
-          expect(res.body).to.be.a.String
+          expect(typeof res.body === 'string').to.be.a.true()
           const body = JSON.parse(res.body)
           expect(body.message).to.equal(expectedRes.body.message)
           done()
@@ -60,7 +60,7 @@ describe('post request', () => {
       it('triggers .catch(err) function', done => {
         bluereq.post(invalidConfig.url)
         .catch(err => {
-          expect(err).to.exist
+          expect(err).to.exist()
           done()
         })
       })
@@ -68,11 +68,11 @@ describe('post request', () => {
       it('returns formatted server errors', done => {
         bluereq.post(`${host}/undefined-endpoint`)
         .catch(err => {
-          expect(err).to.exist
+          expect(err).to.exist()
           expect(err.statusCode).to.equal(404)
           expect(err.statusMessage).to.equal('Not Found')
-          expect(err.headers).to.exist
-          expect(err.body).to.exist
+          expect(err.headers).to.exist()
+          expect(err.body).to.exist()
           expect(err.url).to.equal(`${host}/undefined-endpoint`)
           done()
         })
@@ -83,7 +83,7 @@ describe('post request', () => {
       it('triggers .catch(res) function', done => {
         bluereq.post(invalidConfig)
         .catch(err => {
-          expect(err).to.exist
+          expect(err).to.exist()
           done()
         })
       })

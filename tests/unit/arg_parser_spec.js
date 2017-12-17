@@ -7,7 +7,7 @@ describe('argParser', () => {
       it('returns a valid options object', () => {
         const args = ['http://example.dev']
         expect(getOpts(args).config).to.deep.equal({ url: 'http://example.dev', json: true, gzip: true })
-        expect(getOpts(args).callback).to.not.exist
+        expect(getOpts(args).callback).to.not.exist()
       })
     })
 
@@ -16,7 +16,7 @@ describe('argParser', () => {
         const args = [{ url: 'http://example.dev' }]
         const opts = getOpts(args)
         expect(opts.config).to.deep.equal(args[0])
-        expect(opts.callback).to.not.exist
+        expect(opts.callback).to.not.exist()
       })
     })
 
@@ -26,7 +26,7 @@ describe('argParser', () => {
         it('returns a valid options object', () => {
           const opts = getOpts(args, true)
           expect(opts.config).to.deep.equal({ url: args[0], json: args[1], gzip: true })
-          expect(opts.callback).to.not.exist
+          expect(opts.callback).to.not.exist()
         })
       })
     })

@@ -6,7 +6,6 @@ const host = `http://localhost:${port}`
 const server = require('../fixtures/server')
 
 describe('general', () => {
-  const expectedRes = { statusCode: 200, body: { message: 'GET complete.' } }
   const validConfig = { url: `${host}/json`, json: true }
 
   before(() => server.start(port))

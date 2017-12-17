@@ -18,7 +18,7 @@ describe('get request', () => {
         bluereq.get(validConfig.url)
         .then(res => {
           expect(res.statusCode).to.equal(expectedRes.statusCode)
-          expect(res.body).to.deep.equal(expectedRes.body)
+          expect(res.body.message).to.equal(expectedRes.body.message)
           done()
         })
       })
@@ -29,7 +29,7 @@ describe('get request', () => {
         bluereq.get(validConfig)
         .then(res => {
           expect(res.statusCode).to.equal(expectedRes.statusCode)
-          expect(res.body).to.deep.equal(expectedRes.body)
+          expect(res.body.message).to.equal(expectedRes.body.message)
           done()
         })
       })

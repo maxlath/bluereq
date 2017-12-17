@@ -11,7 +11,12 @@ exports.start = function (port) {
   // JSON
   router
   .route('/json')
-  .get((req, res, next) => res.json({ message: 'GET complete.' }))
+  .get((req, res, next) => {
+    res.json({
+      message: 'GET complete.',
+      reqHeaders: req.headers
+    })
+  })
   .put((req, res, next) => res.json({ message: 'PUT complete.', req: req.body }))
   .post((req, res, next) => res.json({ message: 'POST complete.', req: req.body }))
   .patch((req, res, next) => res.json({ message: 'PATCH complete.', req: req.body }))

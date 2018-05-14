@@ -1,4 +1,4 @@
-const { expect } = require('chai')
+const should = require('should')
 const bluereq = require('../../lib/bluereq')
 // test server config
 const port = 9090
@@ -14,7 +14,7 @@ describe('general', () => {
   it('should default to config.gzip=true', done => {
     bluereq.get(validConfig)
     .then(res => {
-      expect(res.body.reqHeaders['accept-encoding']).to.equal('gzip, deflate')
+      should(res.body.reqHeaders['accept-encoding']).equal('gzip, deflate')
       done()
     })
   })
@@ -24,7 +24,7 @@ describe('general', () => {
     config.gzip = false
     bluereq.get(config)
     .then(res => {
-      expect(res.body.reqHeaders['accept-encoding']).not.to.equal('gzip, deflate')
+      should(res.body.reqHeaders['accept-encoding']).not.equal('gzip, deflate')
       done()
     })
   })

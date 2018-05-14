@@ -1,4 +1,4 @@
-const { expect } = require('chai')
+const should = require('should')
 const bluereq = require('../../lib/bluereq')
 // test server config
 const port = 9090
@@ -17,8 +17,8 @@ describe('delete request', () => {
     it('triggers .then(res) function', done => {
       bluereq.delete(validConfig.url)
         .then(res => {
-          expect(res.statusCode).to.equal(expectedRes.statusCode)
-          expect(res.body).to.deep.equal(expectedRes.body)
+          should(res.statusCode).equal(expectedRes.statusCode)
+          should(res.body).deepEqual(expectedRes.body)
           done()
         })
     })
@@ -28,8 +28,8 @@ describe('delete request', () => {
     it('triggers .then(res) function', done => {
       bluereq.delete(validConfig)
         .then(res => {
-          expect(res.statusCode).to.equal(expectedRes.statusCode)
-          expect(res.body).to.deep.equal(expectedRes.body)
+          should(res.statusCode).equal(expectedRes.statusCode)
+          should(res.body).deepEqual(expectedRes.body)
           done()
         })
     })
@@ -41,7 +41,7 @@ describe('delete request', () => {
       it('triggers .catch(err) function', done => {
         bluereq.delete(invalidConfig.url)
         .catch(err => {
-          expect(err).to.exist()
+          should(err).be.ok()
           done()
         })
       })
@@ -51,7 +51,7 @@ describe('delete request', () => {
       it('triggers .catch(res) function', done => {
         bluereq.delete(invalidConfig)
         .catch(err => {
-          expect(err).to.exist()
+          should(err).be.ok()
           done()
         })
       })

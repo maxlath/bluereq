@@ -1,4 +1,4 @@
-const { expect } = require('chai')
+const should = require('should')
 const bluereq = require('../../lib/bluereq')
 // test server config
 const port = 9090
@@ -14,8 +14,8 @@ describe('error object', () => {
   it('has the right statusCode and body', done => {
     bluereq.get(invalidConfig.url)
     .catch(err => {
-      expect(err.statusCode).to.equal(expectedErr.statusCode)
-      expect(err.body).to.deep.equal(expectedErr.body)
+      should(err.statusCode).equal(expectedErr.statusCode)
+      should(err.body).deepEqual(expectedErr.body)
       done()
     })
   })

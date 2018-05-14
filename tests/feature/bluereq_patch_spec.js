@@ -1,4 +1,4 @@
-const { expect } = require('chai')
+const should = require('should')
 const bluereq = require('../../lib/bluereq')
 // test server config
 const port = 9090
@@ -17,9 +17,9 @@ describe('patch request', () => {
       it('triggers .then(res) function', done => {
         bluereq.patch(validConfig.url)
         .then(res => {
-          expect(res.statusCode).to.equal(expectedRes.statusCode)
-          expect(res.body.message).to.equal(expectedRes.body.message)
-          expect(res.body.req).to.deep.equal({})
+          should(res.statusCode).equal(expectedRes.statusCode)
+          should(res.body.message).equal(expectedRes.body.message)
+          should(res.body.req).deepEqual({})
           done()
         })
       })
@@ -29,8 +29,8 @@ describe('patch request', () => {
       it('triggers .then(res) function', done => {
         bluereq.patch(validConfig)
         .then(res => {
-          expect(res.statusCode).to.equal(expectedRes.statusCode)
-          expect(res.body).to.deep.equal(expectedRes.body)
+          should(res.statusCode).equal(expectedRes.statusCode)
+          should(res.body).deepEqual(expectedRes.body)
           done()
         })
       })
@@ -43,7 +43,7 @@ describe('patch request', () => {
       it('triggers .catch(err) function', done => {
         bluereq.patch(invalidConfig.url)
         .catch(err => {
-          expect(err).to.exist()
+          should(err).be.ok()
           done()
         })
       })
@@ -53,7 +53,7 @@ describe('patch request', () => {
       it('triggers .catch(res) function', done => {
         bluereq.patch(invalidConfig)
         .catch(err => {
-          expect(err).to.exist()
+          should(err).be.ok()
           done()
         })
       })

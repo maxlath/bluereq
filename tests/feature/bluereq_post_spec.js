@@ -1,4 +1,4 @@
-const { expect } = require('chai')
+const should = require('should')
 const bluereq = require('../../lib/bluereq')
 // test server config
 const port = 9090
@@ -17,9 +17,9 @@ describe('post request', () => {
       it('triggers .then(res) function', done => {
         bluereq.post(validConfig.url)
         .then(res => {
-          expect(res.statusCode).to.equal(expectedRes.statusCode)
-          expect(res.body.message).to.equal(expectedRes.body.message)
-          expect(res.body.req).to.deep.equal({})
+          should(res.statusCode).equal(expectedRes.statusCode)
+          should(res.body.message).equal(expectedRes.body.message)
+          should(res.body.req).deepEqual({})
           done()
         })
       })
@@ -29,10 +29,10 @@ describe('post request', () => {
       it('triggers .then(res) function', done => {
         bluereq.post(validConfig.url, 'some text')
         .then(res => {
-          expect(res.statusCode).to.equal(expectedRes.statusCode)
-          expect(typeof res.body === 'string').to.be.a.true()
+          should(res.statusCode).equal(expectedRes.statusCode)
+          should(typeof res.body === 'string').be.true()
           const body = JSON.parse(res.body)
-          expect(body.message).to.equal(expectedRes.body.message)
+          should(body.message).equal(expectedRes.body.message)
           done()
         })
       })
@@ -42,8 +42,8 @@ describe('post request', () => {
       it('triggers .then(res) function', done => {
         bluereq.post(validConfig)
         .then(res => {
-          expect(res.statusCode).to.equal(expectedRes.statusCode)
-          expect(res.body).to.deep.equal(expectedRes.body)
+          should(res.statusCode).equal(expectedRes.statusCode)
+          should(res.body).deepEqual(expectedRes.body)
           done()
         })
       })
@@ -60,7 +60,7 @@ describe('post request', () => {
       it('triggers .catch(err) function', done => {
         bluereq.post(invalidConfig.url)
         .catch(err => {
-          expect(err).to.exist()
+          should(err).be.ok()
           done()
         })
       })
@@ -68,12 +68,12 @@ describe('post request', () => {
       it('returns formatted server errors', done => {
         bluereq.post(`${host}/undefined-endpoint`)
         .catch(err => {
-          expect(err).to.exist()
-          expect(err.statusCode).to.equal(404)
-          expect(err.statusMessage).to.equal('Not Found')
-          expect(err.headers).to.exist()
-          expect(err.body).to.exist()
-          expect(err.url).to.equal(`${host}/undefined-endpoint`)
+          should(err).be.ok()
+          should(err.statusCode).equal(404)
+          should(err.statusMessage).equal('Not Found')
+          should(err.headers).be.ok()
+          should(err.body).be.ok()
+          should(err.url).equal(`${host}/undefined-endpoint`)
           done()
         })
       })
@@ -83,7 +83,7 @@ describe('post request', () => {
       it('triggers .catch(res) function', done => {
         bluereq.post(invalidConfig)
         .catch(err => {
-          expect(err).to.exist()
+          should(err).be.ok()
           done()
         })
       })

@@ -1,4 +1,4 @@
-const { expect } = require('chai')
+const should = require('should')
 const getOpts = require('../../lib/get_options')
 
 describe('argParser', () => {
@@ -6,8 +6,8 @@ describe('argParser', () => {
     describe('[url]', () => {
       it('returns a valid options object', () => {
         const args = ['http://example.dev']
-        expect(getOpts(args).config).to.deep.equal({ url: 'http://example.dev', json: true, gzip: true })
-        expect(getOpts(args).callback).to.not.exist()
+        should(getOpts(args).config).deepEqual({ url: 'http://example.dev', json: true, gzip: true })
+        should(getOpts(args).callback).not.be.ok()
       })
     })
 
@@ -15,8 +15,8 @@ describe('argParser', () => {
       it('returns a valid options object', () => {
         const args = [{ url: 'http://example.dev' }]
         const opts = getOpts(args)
-        expect(opts.config).to.deep.equal(args[0])
-        expect(opts.callback).to.not.exist()
+        should(opts.config).deepEqual(args[0])
+        should(opts.callback).not.be.ok()
       })
     })
 
@@ -25,8 +25,8 @@ describe('argParser', () => {
       describe('if "hasData" is true', () => {
         it('returns a valid options object', () => {
           const opts = getOpts(args, true)
-          expect(opts.config).to.deep.equal({ url: args[0], json: args[1], gzip: true })
-          expect(opts.callback).to.not.exist()
+          should(opts.config).deepEqual({ url: args[0], json: args[1], gzip: true })
+          should(opts.callback).not.be.ok()
         })
       })
     })

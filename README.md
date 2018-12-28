@@ -14,6 +14,7 @@ just wrapping [request](https://www.npmjs.com/package/request) with [bluebird](h
 - [How-to](#how-to)
   - [the simple way](#the-simple-way)
   - [the more configurable way](#the-more-configurable-way)
+  - [debug](#debug)
 - [Alternatives](#alternatives)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -75,6 +76,11 @@ breq.post(config)
 
 See [request documentation](https://www.npmjs.com/package/request) for more options
 
+### debug
+As it is using [request](https://www.npmjs.com/package/request) under the hood, you can get debug it [the same way](https://github.com/request/request#debugging):
+```sh
+export NODE_DEBUG=request ; node script.js
+```
 
 ## Alternatives
 

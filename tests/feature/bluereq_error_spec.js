@@ -14,6 +14,7 @@ describe('error object', () => {
   it('has the right statusCode and body', done => {
     bluereq.get(invalidConfig.url)
     .catch(err => {
+      should(err.url).equal(invalidConfig.url)
       should(err.statusCode).equal(expectedErr.statusCode)
       should(err.body).deepEqual(expectedErr.body)
       done()

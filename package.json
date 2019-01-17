@@ -1,6 +1,6 @@
 {
   "name": "bluereq",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "A bluebird promise wrapper for HTTP requests",
   "main": "lib/bluereq.js",
   "contributors": [

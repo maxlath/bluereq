@@ -20,4 +20,12 @@ describe('error object', () => {
       done()
     })
   })
+
+  it('has an elapsedTime when a timer is requested', done => {
+    bluereq.get({ url: invalidConfig.url, time: true })
+    .catch(err => {
+      should(err.elapsedTime).be.a.Number()
+      done()
+    })
+  })
 })

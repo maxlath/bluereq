@@ -25,6 +25,7 @@
   "scripts": {
     "lint": "standard",
     "prepublishOnly": "npm run lint && npm test",
+    "postpublish": "git push --tags",
     "test": "mocha tests/unit/* tests/feature/*",
     "update-toc": "doctoc README.md"
   },
